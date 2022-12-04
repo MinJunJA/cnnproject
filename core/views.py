@@ -1,7 +1,8 @@
 import os
 import numpy as np
 from gtts import gTTS
-from .models import Snack # models.py 안의 Snack 클래스 호출
+from playsound import playsound
+from .models import Snack,Nutrition # models.py 안의 Snack 클래스 호출
 
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import load_img , img_to_array
@@ -42,13 +43,8 @@ def index(request):
         test_image = img/255.0
 
         # load model(CNN)
-        model = tf.keras.models.load_model(os.getcwd() + '/3rd_cnn_1.h5')
+        model = tf.keras.models.load_model(os.getcwd() + '/3rd_vgg16_2.h5')
         result = model.predict(test_image)
-
-        # json_file = open("model.json","r")
-        # loaded_model_json = json_file.read()
-        # json_file.close()
-        # loaded_model = model_from_json(loaded_model_json)
 
         # ----------------
         # LABELS
@@ -67,17 +63,21 @@ def index(request):
 
         prediction = np.argmax(result)
         snack_object = Snack.objects.get(id=prediction+1)
+        nutrition_object = Nutrition.objects.get(id=prediction+1)
 
         name = snack_object.name
         info = snack_object.info
         price = snack_object.price
+
+        total_content = str(nutrition_object.total_content)
+        calories = str(nutrition_object.calories)
       
         snack_name="snack_name.mp3"
         name_tts = gTTS(text="이 상품은 "+ name+"입니다. 가격은 " +str(price)+"원입니다.", lang="ko")
         name_tts.save("./assets/"+snack_name)
 
         snack_info="snack_info.mp3"
-        info_tts = gTTS(text=info, lang="ko") # info에 해당하는 str값을 가져와서 음성으로 변환
+        info_tts = gTTS(text=info+"상품의 총량은 "+total_content+"그램이며, 칼로리는 "+calories+"칼로리입니다." ,lang="ko") # info에 해당하는 str값을 가져와서 음성으로 변환
         info_tts.save("./assets/"+snack_info)
 
         return TemplateResponse(
@@ -98,5 +98,7 @@ def index(request):
         return TemplateResponse(
             request,
             "index.html",
-            {"message": "No Image Selected"},
+            {
+                "message": "업로드한 이미지가 없습니다."
+            },
         )

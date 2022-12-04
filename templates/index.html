@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -40,6 +40,22 @@
               </li>
           </ul>
       </div>
+      <section class="hero">
+        <div class="container">
+          <div class="row">
+            <div class="col-9">
+              <div class="headline" id="headline">
+                <h1 class="text-white mb-3 align-items-center">과자 이미지를 준비해주세요</h1>
+                <p class="text-white-50 mb-3 align-items-center">상품을 잘 보이게 찍을수록 올바르게 판독할 확률이 높습니다</p>  
+              </div>
+                
+            </div>
+            <div class="col-3 align-items-center">
+              <button id="btn-read">안내음성 듣기</button>
+            </div>
+          </div>
+        </div>
+      </section>
     </header>
 
     <form method="POST" enctype="multipart/form-data">
@@ -54,12 +70,6 @@
       <button class="compress_image mb-2" type="submit" id="submitBtn">
         업로드
       </button>
-
-      <!-- <div class="buttons">
-        <button onclick="startWebcam()">캠 열기</button>
-        <button onclick="stopWebcam()">캠 닫기</button>
-      </div>
-      <video id="webcam-id" autoplay="true"></video> -->
 
       <div class="status">
         <p id="message">{{ message }}</p>
@@ -95,34 +105,41 @@
     <div class="footer">
       © <a href='https://kr.123rf.com/profile_captainvector'>captainvector</a>, <a href='https://www.123rf.com/free-images/'>123RF Free Images</a>
     </div>
-    
-
     <script src="{% static 'js/main.js' %}"></script>
     <script>
-      const videoEl = document.getElementById("webcam-id");
-      const startWebcam = () =>{
-        if(navigator.mediaDevices.getUserMedia){
-          navigator.mediaDevices //카메라 권한 정보 호출
-          .getUserMedia({video:true})
-          .then(stream =>{
-            videoEl.srcObject = stream;
+      function speak(text, opt_prop) {
+          if (typeof SpeechSynthesisUtterance === "undefined" || typeof window.speechSynthesis === "undefined") {
+              alert("이 브라우저는 음성 합성을 지원하지 않습니다.")
+              return
+          }
+          
+          window.speechSynthesis.cancel() // 현재 읽고있다면 초기화
+
+          const prop = opt_prop || {}
+
+          const speechMsg = new SpeechSynthesisUtterance()
+          speechMsg.rate = prop.rate || 1 // 속도: 0.1 ~ 10      
+          speechMsg.pitch = prop.pitch || 1 // 음높이: 0 ~ 2
+          speechMsg.lang = prop.lang || "ko-KR"
+          speechMsg.text = text
+          
+          // SpeechSynthesisUtterance에 저장된 내용을 바탕으로 음성합성 실행
+          window.speechSynthesis.speak(speechMsg)
+      }
+
+
+      // 이벤트 영역
+      
+      const headline = document.getElementById("headline")
+      const btnRead = document.getElementById("btn-read")
+
+      btnRead.addEventListener("click", e => {
+          speak(headline.textContent, {
+              rate: 1,
+              pitch: 1.2,
+              lang: "ko-KR"
           })
-          .catch((err)=>{
-            console.log("카메라를 가져오지 못했습니다...",err);
-          });
-        }
-      };
-
-      const stopWebcam = () =>{
-        const stream = videoEl.srcObject;
-        const tracks = stream.getTracks();
-
-        for(let i=0;i<tracks.length;i++){
-          const track = tracks[i]
-          track.stop()
-        }
-        videoEl.srcObject=null;
-      };
+      })
     </script>
   </body>
 </html>

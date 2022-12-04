@@ -22,19 +22,13 @@ html {
   --black-color: #021418;
   /*------- Font and typography -------*/
   --biggest-font-size: 1.25rem;
-  --h1-font-size: 3rem;
   --normal-font-size: 1.2rem;
-  --small-font-size: 0.713rem;
-  --tiny-font-size: 0.625rem;
 }
 
 @media screen and (min-width: 1900px) {
   :root {
-    --h1-font-size: 3.2rem;
-    --h4-font-size: 2rem;
     --normal-font-size: 1rem;
-    --small-font-size: 1rem;
-    --tiny-font-size: 0.688rem;
+
   }
 }
 
@@ -52,12 +46,25 @@ header .forms input.form-control::placeholder{
   color: white;
 }
 
-body {
-  background: var(--white-color);
+section.hero .container{
+  padding-top: 100px;
 }
 
-h1 {
-  text-align: center;
+section.hero .headline h1{
+  font-size: 70px;
+  font-weight: 700;
+  
+}
+
+section.hero .headline p{
+  font-size: 35px;
+  font-weight: 400;
+  float: left;
+  /* margin: 1vh auto; */
+}
+
+body {
+  background: var(--white-color);
 }
 
 span {
@@ -65,16 +72,15 @@ span {
   font-weight: 800;
 }
 
-h1 {
-  font-weight: 800;
-  margin: 4vh 2vw;
-  font-size: var(--h1-font-size);
-}
-
-p {
-  font-weight: 400;
-  margin: 1vh auto;
-  font-size: var(--normal-font-size);
+#btn-read{
+  padding: 1rem;
+  font-weight: 600;
+  font-size: 40px;
+  color: var(--white-color);
+  background: var(--main-color);
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 a {
@@ -83,10 +89,10 @@ a {
   font-weight: 600;
 }
 
-button {
+#submitBtn {
   padding: 1rem;
   font-weight: 600;
-  font-size: var(--h1-font-size);
+  font-size: 50px;
   color: var(--white-color);
   background: var(--main-color);
   border: 0;
