@@ -81,9 +81,9 @@ DATABASES = {
     # }
     'default':{
         'ENGINE' : 'django.db.backends.mysql',
-        'NAME' : '',
+        'NAME' : 'tutorial_db',
         'USER' : 'root',
-        'PASSWORD' : '',
+        'PASSWORD' : 'jimkwon95',
         'HOST' : 'localhost',
         'PORT' : '3306',
     }

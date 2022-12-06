@@ -18,6 +18,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 from .views import index
+from . import views
 
 urlpatterns = [
     path("", index, name="index"),
@@ -26,6 +27,7 @@ urlpatterns = [
     path("service/", include('service.urls')),
     path("future/", include('future.urls')),
     path("AboutUs/", include('AboutUs.urls')),
+    path("pred/", views.pred),
 ]
 
 if settings.DEBUG:

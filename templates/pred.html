@@ -40,41 +40,7 @@
               </li>
           </ul>
       </div>
-      <section class="hero">
-        <div class="container">
-          <div class="row">
-            <div class="col-9">
-              <div class="headline" id="headline">
-                <h1 class="text-white mb-3 align-items-center">과자 이미지를 준비해주세요</h1>
-                <p class="text-white-50 mb-3 align-items-center">상품을 잘 보이게 찍을수록 올바르게 판독할 확률이 높습니다</p>  
-              </div>
-                
-            </div>
-            <div class="col-3 align-items-center">
-              <button id="btn-read">안내음성 듣기</button>
-            </div>
-          </div>
-        </div>
-      </section>
     </header>
-
-    <form method="POST" enctype="multipart/form-data">
-      {% csrf_token %}
-      <input
-        class="custom-file-upload"
-        type="file"
-        accept="image"
-        name="image"
-        id="file"
-      />
-      <button class="compress_image mb-2" type="submit" id="submitBtn">
-        업로드
-      </button>
-
-      <div class="status">
-        <p id="message">{{ message }}</p>
-      </div>
-    </form>
 
     <div class="wrapper">
       <img
