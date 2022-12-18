@@ -66,6 +66,7 @@ hvplot==0.8.0
 hyperlink==21.0.0
 idna==3.4
 image==1.5.33
+
 imagecodecs==2021.8.26
 imageio==2.19.3
 imagesize==1.4.1
@@ -100,10 +101,6 @@ Markdown==3.3.4
 MarkupSafe==2.0.1
 matplotlib==3.5.3
 matplotlib-inline==0.1.6
-mccabe==0.7.0
-mistune==0.8.4
-mock==4.0.3
-mpmath==1.2.1
 msgpack==1.0.3
 multipledispatch==0.6.0
 munkres==1.1.4
