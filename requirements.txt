@@ -19,7 +19,7 @@ backports.tempfile==1.0
 backports.weakref==1.0.post1
 bcrypt==3.2.0
 beautifulsoup4==4.11.1
-bitarray==2.5.1
+birray==2.5.1
 bkcharts==0.2
 bleach==4.1.0
 bokeh==2.4.3
@@ -153,10 +153,6 @@ sqlparse==0.4.3
 stack-data==0.2.0
 statsmodels==0.13.2
 sympy==1.11.1
-tables==3.7.0
-tabulate==0.8.10
-TBB==0.2
-tblib==1.7.0
 tenacity==8.0.1
 tensorflow-hub==0.12.0
 tensorflowjs==4.1.0
