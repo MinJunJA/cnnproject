@@ -1,7 +1,5 @@
 import os
 import numpy as np
-from gtts import gTTS
-from playsound import playsound
 from .models import Snack,Nutrition # models.py 안의 Snack 클래스 호출
 
 import tensorflow as tf
@@ -9,11 +7,14 @@ from tensorflow.keras.preprocessing.image import load_img , img_to_array
 from django.conf import settings
 from django.template.response import TemplateResponse
 from django.utils.datastructures import MultiValueDictKeyError
-# from keras.models import model_from_json
 # https://im-nanna.tistory.com/27 //MultiValueDictKeyError에 대한 설명
 # https://windybay.net/post/39/
 
 from django.core.files.storage import FileSystemStorage
+from django.shortcuts import render
+from django.db import connection
+
+
 
 class CustomFileSystemStorage(FileSystemStorage):
     def get_available_name(self, name, max_length=None):
@@ -62,6 +63,7 @@ def index(request):
         print("Prediction: " + str(np.argmax(result)))
 
         prediction = np.argmax(result)
+        accuracy = str(int(np.max(result)*100))+"%"
         snack_object = Snack.objects.get(id=prediction+1)
         nutrition_object = Nutrition.objects.get(id=prediction+1)
 
@@ -69,26 +71,43 @@ def index(request):
         info = snack_object.info
         price = snack_object.price
 
-        total_content = str(nutrition_object.total_content)
+        total_content = str(nutrition_object.total_content) # total_content: 총 용량
         calories = str(nutrition_object.calories)
-      
-        # snack_name="snack_name.mp3"
-        # name_tts = gTTS(text="이 상품은 "+ name+"입니다. 가격은 " +str(price)+"원입니다.", lang="ko")
-        # name_tts.save("./assets/"+snack_name)
 
-        # snack_info="snack_info.mp3"
-        # info_tts = gTTS(text=info+"상품의 총량은 "+total_content+"그램이며, 칼로리는 "+calories+"칼로리입니다." ,lang="ko") # info에 해당하는 str값을 가져와서 음성으로 변환
-        # info_tts.save("./assets/"+snack_info)
+        if name=="바나나킥":
+            eng_name="banana"
+        elif name=="포카칩":
+            eng_name="chip"
+        elif name=="화이트하임":
+            eng_name="heim"
+        elif name=="양파링":
+            eng_name="onion"
+        elif name=="오레오":
+            eng_name="oreo"
+        elif name=="아몬드빼빼로":
+            eng_name="pepero"
+        elif name=="후렌치파이":
+            eng_name="pie"
+        elif name=="벌집핏자":
+            eng_name="pizza"
+        elif name=="새우깡":
+            eng_name="shrimp"
+        elif name=="꼬북칩":
+            eng_name="turtle"
+        else:
+            eng_name="#"
 
         return TemplateResponse(
             request,
-            "index.html",
+            "pred.html",
             {
                 "message": message,
                 "image": image,
                 "image_url": image_url,
                 "prediction": prediction,
                 "name": name,
+                "eng_name": eng_name,
+                "accuracy": accuracy,
                 "info": info,
                 "price": price,
                 "total_content": total_content,
@@ -104,6 +123,7 @@ def index(request):
                 "message": "업로드한 이미지가 없습니다."
             },
         )
+
 
 def pred(request):
     message = ""
@@ -155,14 +175,6 @@ def pred(request):
 
         total_content = str(nutrition_object.total_content)
         calories = str(nutrition_object.calories)
-      
-        # snack_name="snack_name.mp3"
-        # name_tts = gTTS(text="이 상품은 "+ name+"입니다. 가격은 " +str(price)+"원입니다.", lang="ko")
-        # name_tts.save("./assets/"+snack_name)
-
-        # snack_info="snack_info.mp3"
-        # info_tts = gTTS(text=info+"상품의 총량은 "+total_content+"그램이며, 칼로리는 "+calories+"칼로리입니다." ,lang="ko") # info에 해당하는 str값을 가져와서 음성으로 변환
-        # info_tts.save("./assets/"+snack_info)
 
         return TemplateResponse(
             request,
@@ -188,3 +200,53 @@ def pred(request):
                 "message": "업로드한 이미지가 없습니다."
             },
         )
+
+def banana(request):
+    return TemplateResponse(request,
+    "banana.html",
+    )
+
+def pepero(request):
+    return TemplateResponse(request,
+    "pepero.html",
+    )
+
+def chip(request):
+    return TemplateResponse(request,
+    "chip.html",
+    )
+
+def heim(request):
+    return TemplateResponse(request,
+    "heim.html",
+    )
+
+def onion(request):
+    return TemplateResponse(request,
+    "onion.html",
+    )
+
+def oreo(request):
+    return TemplateResponse(request,
+    "oreo.html",
+    )
+
+def pie(request):
+    return TemplateResponse(request,
+    "pie.html",
+    )
+
+def pizza(request):
+    return TemplateResponse(request,
+    "pizza.html",
+    )
+
+def shrimp(request):
+    return TemplateResponse(request,
+    "shrimp.html",
+    )
+
+def turtle(request):
+    return TemplateResponse(request,
+    "turtle.html",
+    )

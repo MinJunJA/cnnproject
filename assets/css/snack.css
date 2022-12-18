@@ -1,0 +1,119 @@
+/* Font Family Import */
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;800&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  /* disable selecting of site content */
+  /* user-select: none;
+  -webkit-user-select: none; */
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: 'IBM Plex Sans KR', sans-serif;
+
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --main-color: #4385db;
+  --white-color: #fffffc;
+  --black-color: #021418;
+  /*------- Font and typography -------*/
+  --biggest-font-size: 1.25rem;
+  --h1-font-size: 3rem;
+  --normal-font-size: 1.2rem;
+  --small-font-size: 0.713rem;
+  --tiny-font-size: 0.625rem;
+}
+
+@media screen and (min-width: 1900px) {
+  :root {
+    --h1-font-size: 3.2rem;
+    --h4-font-size: 2rem;
+    --normal-font-size: 1rem;
+    --small-font-size: 1rem;
+    --tiny-font-size: 0.688rem;
+  }
+}
+
+body {
+  background-image: url("../images/allback.png");
+  background-color: rgb(83, 79, 87);
+  background-size: cover;
+}
+
+button {
+  padding: 0.9rem;
+  font-weight: 500;
+  font-size: 30px;
+  color: black;
+  background-color: rgb(255, 221, 0);
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  left: 100px;
+  align-items: center;
+  position: relative;
+}
+
+/*------------------------------------------------------*/
+
+
+.header_side {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+  height: 150px;
+}
+.logo {
+  width: 278px;
+  height: 102px;
+  background: url("../images/logo.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 15%;
+  left: 7%;
+  overflow: hidden;
+}
+.home {
+  width: 70px;
+  height: 70px;
+  background: url("../images/home.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 25%;
+  left: 85%;
+  overflow: hidden;
+}
+.card{
+  display: flex;
+  position: relative;
+}
+
+.allback {
+  width: 100%;
+  height: auto;
+  background: url("../images/allback.png");
+  background-size: cover;
+  opacity : 1;
+  position : absolute;
+  top : 0px;
+  left : 0px;
+  overflow : hidden;
+}
+
+/*------------------------------------------------------*/

@@ -24,10 +24,18 @@ urlpatterns = [
     path("", index, name="index"),
     path("admin/", admin.site.urls),
     path("snack/", include('snack.urls')),
-    path("service/", include('service.urls')),
-    path("future/", include('future.urls')),
     path("AboutUs/", include('AboutUs.urls')),
     path("pred/", views.pred),
+    path("banana/",views.banana),
+    path("pepero/",views.pepero),
+    path("chip/",views.chip),
+    path("heim/",views.heim),
+    path("onion/",views.onion),
+    path("oreo/",views.oreo),
+    path("pie/",views.pie),
+    path("pizza/",views.pizza),
+    path("shrimp/",views.shrimp),
+    path("turtle/",views.turtle),
 ]
 
 if settings.DEBUG:

@@ -1,17 +1,17 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko-KR">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>튼튼한 종이비행기</title>
-    <link rel="icon" href="{% static 'images/paperplane.jpg' %}">
+    <title>봄봄 (bombom)</title>
+    <link rel="icon" href="{% static 'images/봄봄2_투명.png' %}">
 
     <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&family=Poppins:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@600&family=IBM+Plex+Sans:wght@600&display=swap" rel="stylesheet">    
 
     <!-- Bootstrap&JS(순서대로) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -21,60 +21,55 @@
 
   <body>
     <header>
-      <div class="container d-flex align-items-center py-3">
-          <a href="/" class="logo me-2">
-              <img src="https://raw.githubusercontent.com/Kihoon-Kwon/TIL/32310f27f238e965307a5b0f4ace40efaa874dc3/images/header-logo.svg" alt="과자">
-          </a>
-          <ul class="nav flex-grow-2">
-              <li class="nav-item">
-                <a href="/service" class="nav-link text-light">과자 찾기 서비스란</a>
-              </li>
-              <li class="nav-item">
-                <a href="/snack" class="nav-link text-light">과자 정보</a>
-              </li>
-              <li class="nav-item">
-                <a href="/future" class="nav-link text-light">Future Update</a>
-              </li>
-              <li class="nav-item">
-                <a href="/AboutUs" class="nav-link text-light">만든 사람들</a>
-              </li>
-          </ul>
-      </div>
+      <div style = "text-align: center; padding-bottom: 100px;">
+        <a href="/" class="logo"></a>
+        <a href="/" class="home"></a>
+      </div>      
     </header>
+    
+    <div class="sound_container" style="visibility: hidden;">
+      <li>상품 정보: 
+        <span id="info">
+          이 상품은 {{name}}입니다. 가격은 {{price}}원입니다. {{info}} 상품의 총량은 {{total_content}}그램, 칼로리는 {{calories}} 칼로리입니다.
+        </span>
+      </li>
+    </div>
 
     <div class="wrapper">
-      <img
+      <div style="border-radius: 3em; margin-right: 50px;">
+        <img
         src="{% if image_url %}{{ image_url }}{% else %}{% static 'images/default.png' %}{% endif %}"
         alt="Compressed Image"
-        width="400px"
-      />
-
-      <div class="info_container">
-        <ul>
-          <li>파일명: <span class="name">{{ image.name }}</span></li>
-          <li>이름 & 가격: <span id="snack">이 상품은 {{name}}입니다. 가격은 {{price}}원입니다.</span></li>
-          <li>상품 정보: <span id="info">{{info}} 상품의 총량은 {{total_content}}그램이며, 칼로리는 {{calories}} 칼로리입니다.</span></li>
-          
-          <!-- <audio autoplay controls>
-            <source src="{% static 'snack_name.mp3' %}" type="audio/mp3">
-          </audio> -->
-          <li>음성 서비스👇👇</li>
-          <button id="nameBtn">이름 & 가격</button>
-          <button id="infoBtn">상품 정보</button>
-          <!-- <audio controls>
-            <source src="{% static 'snack_info.mp3' %}" type="audio/mp3">
-          </audio> -->
-        </ul>
+        width="400px"/>
+      </div>
+      <div class="card" style="width: 25rem; height: 28rem;">
+        <div class="info_container">
+          <ul>
+            <li style = "text-align: center; font-weight: 700; font-size: 52px;">상품 정보</li>
+            <li>상품명: {{name}}</li>
+            <li>정확도: {{accuracy}}</li>
+            <li>가격: {{price}}원</li>  
+          </ul>
+        </div>
       </div>
     </div>
+    <div class="btn_container">
+      <button type="button" class="btm_image" id="infoBtn" style="width: 300px; margin-right: 100px; background-color: #1AEBFF">▶</button>
+      <button 
+        type = "button" class="v1_36" onclick = "location.href = 'http://127.0.0.1:8000/snack/'+'{{eng_name}}'" style="width: 300px; background-color: #FFFF00;">영양성분보기
+      </button>
+    </div>
+    <div class="v1_31">
+      <div class="name"></div>
+    </div>
 
-    <div class="header">
-      <h4>과자 이미지 예측하기</h4>      
+        <div class="v1_37">
+        </div>
+        <a href = "/" class="v1_38">
+        </a>
+
+        </div>
     </div>
-    <div class="footer">
-      © <a href='https://kr.123rf.com/profile_captainvector'>captainvector</a>, <a href='https://www.123rf.com/free-images/'>123RF Free Images</a>
-    </div>
-    <script src="{% static 'js/main.js' %}"></script>
     <script>
       function speak(text, opt_prop) {
           if (typeof SpeechSynthesisUtterance === "undefined" || typeof window.speechSynthesis === "undefined") {
@@ -83,11 +78,10 @@
           }
           
           window.speechSynthesis.cancel() // 현재 읽고있다면 초기화
-
           const prop = opt_prop || {}
 
           const speechMsg = new SpeechSynthesisUtterance()
-          speechMsg.rate = prop.rate || 1 // 속도: 0.1 ~ 10      
+          speechMsg.rate = prop.rate || 0.7 // 속도: 0.1 ~ 10      
           speechMsg.pitch = prop.pitch || 1 // 음높이: 0 ~ 2
           speechMsg.lang = prop.lang || "ko-KR"
           speechMsg.text = text
@@ -98,33 +92,16 @@
       // 이벤트 영역
       
       const headline = document.getElementById("headline")
-      const btnRead = document.getElementById("btn-read")
-      const infoBtn = document.getElementById("infoBtn")
-      const nameBtn = document.getElementById("nameBtn")
-
-      btnRead.addEventListener("click", e => {
-          speak(headline.textContent, {
-              rate: 1,
-              pitch: 1.2,
-              lang: "ko-KR"
-          })
-      })
+      const infoBtn = document.getElementById("infoBtn")  
 
       infoBtn.addEventListener("click", e => {
           speak(info.textContent, {
-              rate: 1,
-              pitch: 1.2,
-              lang: "ko-KR"
-          })
-      })
-
-      nameBtn.addEventListener("click", e => {
-          speak(snack.textContent, {
-              rate: 1,
-              pitch: 1.2,
+              rate: 0.9,
+              pitch: 1.0,
               lang: "ko-KR"
           })
       })
     </script>
+    <script src="{% static 'js/main.js' %}"></script>
   </body>
 </html>

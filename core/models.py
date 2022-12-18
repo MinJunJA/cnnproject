@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 class Snack(models.Model):
     name = models.CharField(max_length=50)
     info = models.CharField(max_length=200)
@@ -23,3 +22,5 @@ class Nutrition(models.Model):
     vitamin = models.IntegerField(default=0) # 비타민
     cholesterol =models.IntegerField(default=0) # 콜레스테롤
     total_fat= models.IntegerField(default=0) # 총 지방산
+
+    
