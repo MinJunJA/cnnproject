@@ -53,4 +53,4 @@ wrapt==1.14.1
 zipp==3.8.0
 PyMySQL==1.0.2
 SQLAlchemy==1.4.39
-sqlparse==0.4.3
+sqlparse
