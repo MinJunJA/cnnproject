@@ -155,6 +155,3 @@ def get_env_variable(var_name):
   except KeyError:
     error_msg = 'Set the {} environment variable'.format(var_name)
     raise ImproperlyConfigured(error_msg)
-
-SECRET_KEY = get_env_variable('DJANGO_SECRET')
-
