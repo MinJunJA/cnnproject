@@ -83,20 +83,20 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     # 'default': {
-#     #     'ENGINE': 'django.db.backends.sqlite3',
-#     #     'NAME': BASE_DIR / 'db.sqlite3',
-#     # }
-#     'default':{
-#         'ENGINE' : 'django.db.backends.mysql',
-#         'NAME' : 'snack',
-#         'USER' : 'root',
-#         'PASSWORD' : 'Alswns0524@',
-#         'HOST' : 'localhost',
-#         'PORT' : '3306',
-#     }
-# }
+DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+    'default':{
+        'ENGINE' : 'django.db.backends.mysql',
+        'NAME' : 'snack',
+        'USER' : 'root',
+        'PASSWORD' : 'Alswns0524@',
+        'HOST' : 'localhost',
+        'PORT' : '3306',
+    }
+}
 
 
 # Password validation
@@ -158,17 +158,3 @@ def get_env_variable(var_name):
 
 SECRET_KEY = get_env_variable('DJANGO_SECRET')
 
-# 데이터베이스는 AWS RDS Mysql 사용 했습니다.
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-		'NAME': get_env_variable('snack'),
-        'USER': get_env_variable('root'),
-        'PASSWORD': get_env_variable('Alswns0524@'),
-        'HOST': get_env_variable('localhost'),
-        'PORT': get_env_variable('3306'),
-        'OPTIONS':{
-            'init_command' : "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
-    }
-}
