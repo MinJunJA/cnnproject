@@ -53,4 +53,7 @@ wrapt==1.14.1
 zipp==3.8.0
 PyMySQL==1.0.2
 SQLAlchemy==1.4.39
-sqlparse
+gunicorn==20.1.0
+whitenoise==6.2.0
+django-environ==0.9.0
+django-cors-headers==3.13.0
